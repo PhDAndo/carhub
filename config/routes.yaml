@@ -2,7 +2,9 @@ home:
   path: /
   controller: App\Controller\HomeController::index
 
-
+produit:
+  path: /produit
+  controller: App\Controller\ProduitController::index
 
 #index:
 #    path: /
