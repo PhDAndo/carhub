@@ -6,6 +6,10 @@ produit:
   path: /produit
   controller: App\Controller\ProduitController::index
 
+admin:
+  path: /admin
+  controller: App\Controller\AdminProduitController::index
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
