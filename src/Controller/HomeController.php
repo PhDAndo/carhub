@@ -17,8 +17,9 @@ class HomeController
         $this -> twig = $twig;
     }
 
-    public function index(): Response
+    public function index(ProduitRepository $repository): Response
     {
+        $produit = $repository->findLatest();
         return new Response($this->twig->render('page/home.html.twig'));
     }
 
