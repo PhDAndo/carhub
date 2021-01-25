@@ -34,12 +34,16 @@ class AdminProduitController extends AbstractController
 
     /**
      * @Route ("/admin/{id}", name="admin.produit.edit")
-     * @param Produit $produit
+     * @param produit $produit
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(ProduitRepository $produit)
     {
-        return $this->render('admin/produit/edit.html.twig', compact('produit'));
+        $form = $this->createForm(ProduitType::class, $produit);
+        return $this->render('admin/produit/edit.html.twig', [
+            'produit' => $produit,
+            'form' => $form->createView()
+        ]);
     }
 
 }
