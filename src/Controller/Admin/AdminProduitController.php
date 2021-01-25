@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProduitRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\Admin\Produit;
 
 
 class AdminProduitController extends AbstractController 
@@ -30,9 +32,14 @@ class AdminProduitController extends AbstractController
         return $this->render('admin/produit/index.html.twig', compact('produit'));
     }
 
-    public function edit()
+    /**
+     * @Route ("/admin/{id}", name="admin.produit.edit")
+     * @param Produit $produit
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(ProduitRepository $produit)
     {
-        
+        return $this->render('admin/produit/edit.html.twig', compact('produit'));
     }
 
 }

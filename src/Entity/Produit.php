@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -52,10 +54,16 @@ class Produit
      */
     private $prix;
 
-    public function __construct()
-    {
-        $this->created_at = new \DateTime();
-    }
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $sold = false;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created_at;
+
 
     public function getId(): ?int
     {
@@ -84,6 +92,11 @@ class Produit
         $this->titre = $titre;
 
         return $this;
+    }
+
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->titre);
     }
 
     public function getDescription(): ?string
@@ -142,6 +155,35 @@ class Produit
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getFormattedPrix(): string
+    {
+        return number_format($this->prix, 0, '', ' ');
+    }
+
+    public function getSold(): ?bool
+    {
+        return $this->sold;
+    }
+
+    public function setSold(bool $sold): self
+    {
+        $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

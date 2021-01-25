@@ -19,6 +19,36 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+
+    /**
+     * @return Produit[]
+     */
+    public function findAllVisible(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Produit[]
+     */
+    public function findLatest(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+    /*
+    private function findVisibleQuery(): QueryBuilder 
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false');
+    }
+    */
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */

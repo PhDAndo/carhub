@@ -15,14 +15,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for produits in produits %}
+                {% for produits in produit %}
                 <tr>
                     <td>{{ produit.title }}</td>
                     <td>
                         <a href="{{ path('admin.produit.edit', { id: produit.id }) }}" class="btn btn-secondary">Editer</a>
                     </td>
                 </tr>
-                {% enfor %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
