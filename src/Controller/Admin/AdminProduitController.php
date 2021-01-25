@@ -41,9 +41,9 @@ class AdminProduitController extends AbstractController
      * @param produit $produit
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(ProduitRepository $produit)
+    public function edit(ProduitRepository $repository)
     {
-        $form = $this->createForm(AdminType::class, $produit);
+        $form = $this->createForm(AdminType::class, $repository);
         return $this->render('admin/produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form->createView()
