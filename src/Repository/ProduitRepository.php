@@ -38,10 +38,10 @@ class ProduitRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->where('p.sold = false')
-            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }
+
     /*
     private function findVisibleQuery(): QueryBuilder 
     {

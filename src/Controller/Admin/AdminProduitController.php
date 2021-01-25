@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProduitRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\Admin\Produit;
+use App\Form\AdminType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType;
 
 
 class AdminProduitController extends AbstractController 
@@ -39,7 +43,7 @@ class AdminProduitController extends AbstractController
      */
     public function edit(ProduitRepository $produit)
     {
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(AdminType::class, $produit);
         return $this->render('admin/produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form->createView()
