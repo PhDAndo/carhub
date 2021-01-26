@@ -4,10 +4,7 @@
 
     <div class="container mt-4">
         <h1>Editer le produit</h1>
-            {{ form_start(form) }}
-                {{ form_rest(form) }}
-                <button class="btn btn-primary">Sauvegarder</button>
-            {{ form_end(form) }}
+        {{ include ("admin/produit/form.html.twig", {form: form, button: "Sauvegarder"}) }}
     </div>
 
 {% endblock %}

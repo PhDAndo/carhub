@@ -19,8 +19,9 @@ class AdminType extends AbstractType
             ->add('marque')
             ->add('type')
             ->add('prix')
-            ->add('sold')
-            ->add('created_at')
+            ->add('sold', null, [
+                'label' => 'Vendu'
+            ])
         ;
     }
 

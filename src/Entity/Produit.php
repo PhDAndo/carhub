@@ -6,6 +6,7 @@ use App\Repository\ProduitRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
