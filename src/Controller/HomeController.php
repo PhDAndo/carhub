@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use App\Repository\ProduitRepository;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class HomeController
 {
@@ -25,9 +28,12 @@ class HomeController
     public function index(ProduitRepository $repository): Response
     {
         $produits = $repository->findLatest();
-        return new Response($this->twig->render('page/home.html.twig', [
-            'produits'=>$produits
-        ]));
+        try {
+            return new Response($this->twig->render('page/home.html.twig', [
+                'produits' => $produits
+            ]));
+        } catch (LoaderError | RuntimeError | SyntaxError $e) {
+        }
     }
 
 }

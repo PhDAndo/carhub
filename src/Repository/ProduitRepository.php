@@ -19,19 +19,20 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
-
+    /*
     /**
      * @return Produit[]
      */
-    public function findAllVisible(): array
+   /* public function findAllVisible(): array
     {
         return $this->createQueryBuilder('p')
             ->where('p.sold = false')
             ->getQuery()
             ->getResult();
     }
-
+    */
     /**
+     * @method Produit[]    findAll()
      * @return Produit[]
      */
     public function findLatest(): array

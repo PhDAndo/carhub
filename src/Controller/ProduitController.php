@@ -35,11 +35,12 @@ class ProduitController extends AbstractController
         ]);
     }
 
-     /**
-      * @param produit $produit
-      * @Route("/produit/{slug} - {id}", name="produit.show")
-      * @return Response
-      */
+    /**
+     * @param produit $produit
+     * @param string $slug
+     * @return Response
+     * @Route("/produit/{slug} - {id}", name="produit.show")
+     */
     public function show(produit $produit, string $slug): Response
     {
         if ($produit->getSlug() !== $slug) {
