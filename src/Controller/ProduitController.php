@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produit;
@@ -28,10 +30,16 @@ class ProduitController extends AbstractController
      * @return Response
      */
 
-    public function index(): Response
-    {      
+    public function index(PaginatorInterface $paginator, Request $request): Response
+    {
+        $produit = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1),
+            12
+        );
         return $this->render('produit/index.html.twig', [
-            'current_menu' => 'produit'
+            'current_menu' => 'produit',
+            'produit' => $produit
         ]);
     }
 

@@ -6,10 +6,13 @@ use App\Repository\ProduitRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
+ * @Vich\Uploadable()
  */
 class Produit
 {
@@ -19,6 +22,18 @@ class Produit
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string|null
+     * @ORM\Column (type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="produit_image", fileNameProperty="filename")
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -64,6 +79,26 @@ class Produit
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $update_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $upgrade_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $update__at;
 
 
     public function getId(): ?int
@@ -185,6 +220,78 @@ class Produit
     public function setCreatedAt(?DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     * @return $this
+     */
+    public function setFilename(?string $filename): produit
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string|null $imageFile
+     * @return $this
+     */
+    public function setImageFile(?string $imageFile): produit
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeInterface
+    {
+        return $this->update_at;
+    }
+
+    public function setUpdateAt(\DateTimeInterface $update_at): self
+    {
+        $this->update_at = $update_at;
+
+        return $this;
+    }
+
+    public function getUpgradeAt(): ?\DateTimeInterface
+    {
+        return $this->upgrade_at;
+    }
+
+    public function setUpgradeAt(?\DateTimeInterface $upgrade_at): self
+    {
+        $this->upgrade_at = $upgrade_at;
 
         return $this;
     }
