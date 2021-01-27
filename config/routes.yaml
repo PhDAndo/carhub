@@ -10,6 +10,8 @@ admin:
   path: /admin
   controller: App\Controller\AdminProduitController::index
 
+logout:
+  path: /logout
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
