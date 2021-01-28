@@ -76,7 +76,7 @@ class Produit
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $sold = false;
-
+    
     /**
      * @ORM\Column(type="datetime", nullable=false)
      */
@@ -227,7 +227,7 @@ class Produit
     /**
      * @return File|null
      */
-    public function getImageFile(): ?File
+    public function getImageFile(): File
     {
         return $this->imageFile;
     }
