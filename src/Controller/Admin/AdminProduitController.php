@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;

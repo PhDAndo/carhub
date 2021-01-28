@@ -1,4 +1,11 @@
 <div class="card mb-4">
+    {% if produit.filename %}
+            <img src="{{ vich_uploader_asset(produit, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height:  auto;">
+
+        {% else %}
+            <img src="{{ '/image/produit/default_img.jpg' | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height: auto;">
+
+    {% endif %}
     <div class="card-body">
         <h5 class="card-title">
             <a href="{{ path('produit.show', {slug: produit.slug, id: produit.id}) }}">

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -76,7 +77,7 @@ class Produit
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $sold = false;
-    
+
     /**
      * @ORM\Column(type="datetime", nullable=false)
      */
@@ -216,7 +217,7 @@ class Produit
 
     /**
      * @param string|null $filename
-     * @return $this
+     * @return produit
      */
     public function setFilename(?string $filename): produit
     {
@@ -227,16 +228,16 @@ class Produit
     /**
      * @return File|null
      */
-    public function getImageFile(): File
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
     /**
      * @param string|null $imageFile
-     * @return $this
+     * @return produit
      */
-    public function setImageFile(?string $imageFile): produit
+    public function setImageFile(?File $imageFile): produit
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile) {
