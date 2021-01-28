@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -76,29 +78,9 @@ class Produit
     private $sold = false;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $created_at;
-
-    /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $updated_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $update_at;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $upgrade_at;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $update__at;
 
 
     public function getId(): ?int
@@ -212,14 +194,14 @@ class Produit
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeInterface
+    public function getUpdateAt(): ?DateTimeInterface
     {
-        return $this->created_at;
+        return $this->updated_at;
     }
 
-    public function setCreatedAt(?DateTimeInterface $created_at): self
+    public function setUpdateAt(?DateTimeInterface $updated_at): self
     {
-        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
@@ -257,42 +239,10 @@ class Produit
     public function setImageFile(?string $imageFile): produit
     {
         $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new DateTime('now');
+        }
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updated_at;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
-    public function getUpdateAt(): ?\DateTimeInterface
-    {
-        return $this->update_at;
-    }
-
-    public function setUpdateAt(\DateTimeInterface $update_at): self
-    {
-        $this->update_at = $update_at;
-
-        return $this;
-    }
-
-    public function getUpgradeAt(): ?\DateTimeInterface
-    {
-        return $this->upgrade_at;
-    }
-
-    public function setUpgradeAt(?\DateTimeInterface $upgrade_at): self
-    {
-        $this->upgrade_at = $upgrade_at;
-
-        return $this;
-    }
 }

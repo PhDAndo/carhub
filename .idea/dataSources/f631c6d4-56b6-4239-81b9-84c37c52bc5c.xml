@@ -1125,9 +1125,10 @@
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="351" parent="336" name="created_at">
+    <column id="351" parent="336" name="updated_at">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <column id="352" parent="336" name="filename">
       <Position>11</Position>
