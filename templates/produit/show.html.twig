@@ -29,8 +29,8 @@
                 <h2>{{ produit.marque }} - {{ produit.type }}</h2>
                 <h2>{{ produit.description }}</h2>
                 <div class="text-primary" style="font-size: 4rem; font-weight: bold;">{{ produit.FormattedPrix }} $</div>
-                <a href="#" class="btn btn-primary">Commander</a>
-                <div id="CommandForm" class="mt-4">
+                <a href="#" class="btn btn-primary" id="CommandButton" {% if form.vars.submitted %} style="display: none" {% endif %}>Commander</a>
+                <div id="CommandForm" class="mt-4" {% if not form.vars.submitted %} style="display: none;" {% endif %}>
                     {{ form_start(form) }}
                         <div class="row">
                             <div class="col">{{ form_row(form.prenom) }}</div>
